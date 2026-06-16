@@ -86,7 +86,7 @@ export default function NuevoArriendo({ app }) {
           {!confirmed && step === 1 && (
             <div className="ajscreen">
               <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>2 · Fechas del arriendo</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 18 }}>
+              <div className="aj-form-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 18 }}>
                 <div>
                   <label style={dateLabel}>Fecha inicio</label>
                   <input defaultValue="2026-05-22" type="date" style={{ ...darkInput, colorScheme: 'dark' }} />

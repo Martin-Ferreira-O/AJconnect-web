@@ -25,7 +25,7 @@ export default function Configuracion({ app }) {
       {/* empresa */}
       <div style={{ background: C.panel, border: `1px solid ${C.border}`, borderRadius: 16, padding: 22, marginBottom: 18 }}>
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 18 }}>Datos de la empresa</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div className="aj-form-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <Field label="Razón social" value="AJ Connect SpA" />
           <Field label="RUT empresa" value="77.456.789-0" isMono />
           <Field label="Correo" value="contacto@ajconnect.cl" />

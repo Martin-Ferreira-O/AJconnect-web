@@ -38,24 +38,24 @@ export default function Clientes({ app }) {
 
       <div className="aj-table-wrap" style={{ background: C.panel, border: `1px solid ${C.border}`, borderRadius: 16, overflow: 'hidden' }}>
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
+          <div className="aj-thead" style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
             <div>Cliente</div><div>RUT</div><div>Contacto</div><div style={{ textAlign: 'center' }}>Arriendos</div><div>Último</div><div />
           </div>
           {rows.map((c) => (
-            <div key={c.id} className="ajrow" onClick={() => app.openDetail('cliente', c.id)}
+            <div key={c.id} className="ajrow aj-trow" onClick={() => app.openDetail('cliente', c.id)}
               style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, alignItems: 'center', padding: '14px 22px', borderBottom: `1px solid ${C.borderFaint}`, cursor: 'pointer' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
+              <div className="aj-cell aj-cell-primary" style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
                 <span style={{ width: 38, height: 38, borderRadius: 11, background: c.color + '22', color: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13, flex: 'none' }}>{c.initials}</span>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.nombre}</div>
                   <div style={{ fontSize: 12, color: C.mute }}>{c.empresa}</div>
                 </div>
               </div>
-              <div style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{c.rut}</div>
-              <div style={{ fontSize: 12.5, color: C.dim, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.email}</div>
-              <div style={{ textAlign: 'center' }}><span style={{ fontFamily: mono, fontSize: 13, color: C.cyanSoft, fontWeight: 600 }}>{c.arr}</span></div>
-              <div style={{ fontSize: 12.5, color: C.dim, fontFamily: mono }}>{c.ultimo}</div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
+              <div className="aj-cell" data-label="RUT" style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{c.rut}</div>
+              <div className="aj-cell" data-label="Contacto" style={{ fontSize: 12.5, color: C.dim, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.email}</div>
+              <div className="aj-cell" data-label="Arriendos" style={{ textAlign: 'center' }}><span style={{ fontFamily: mono, fontSize: 13, color: C.cyanSoft, fontWeight: 600 }}>{c.arr}</span></div>
+              <div className="aj-cell" data-label="Último" style={{ fontSize: 12.5, color: C.dim, fontFamily: mono }}>{c.ultimo}</div>
+              <div className="aj-cell-chevron" style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
             </div>
           ))}
         </div>

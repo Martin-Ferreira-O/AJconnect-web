@@ -73,7 +73,51 @@ button { font-family: inherit; }
 @media (max-width: 560px) {
   .aj-kpi-grid { grid-template-columns: 1fr 1fr !important; }
   .aj-rep-kpis { grid-template-columns: 1fr 1fr !important; }
-  /* Tables become horizontally scrollable on small screens */
-  .aj-table-wrap { overflow-x: auto; }
-  .aj-table-wrap > * { min-width: 720px; }
+  /* two-column forms stack on phones */
+  .aj-form-2col { grid-template-columns: 1fr !important; }
+}
+
+/* ---- mobile: turn data tables into stacked cards ---- */
+@media (max-width: 720px) {
+  /* drop the desktop grid header */
+  .aj-thead { display: none !important; }
+
+  /* each row becomes a self-contained card */
+  .aj-trow {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 9px !important;
+    padding: 15px 16px !important;
+  }
+
+  /* a labelled value: "LABEL ............ value" */
+  .aj-trow .aj-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    text-align: left !important;
+    min-width: 0;
+  }
+  .aj-trow .aj-cell::before {
+    content: attr(data-label);
+    flex: none;
+    color: #6b6b74;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  /* the primary cell (name / avatar) is the card heading — no label, always first */
+  .aj-trow .aj-cell-primary {
+    order: -1;
+    padding-bottom: 11px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .aj-trow .aj-cell-primary::before { content: none; }
+
+  /* the trailing chevron is redundant once the row is a card */
+  .aj-trow .aj-cell-chevron { display: none !important; }
 }

@@ -49,28 +49,28 @@ export default function Inventario({ app }) {
 
       <div className="aj-table-wrap" style={{ background: C.panel, border: `1px solid ${C.border}`, borderRadius: 16, overflow: 'hidden' }}>
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
+          <div className="aj-thead" style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
             <div>Código</div><div>Equipo</div><div>Categoría</div><div style={{ textAlign: 'center' }}>Stock</div><div style={{ textAlign: 'center' }}>Disp.</div><div>Estado</div><div>Actualizado</div><div />
           </div>
           {rows.map((e) => {
             const [iconBg, iconColor] = catColors(e.cat)
             const dispColor = e.disp === 0 ? '#ff6b78' : (e.disp <= 2 ? '#f5b94e' : '#36d98e')
             return (
-              <div key={e.id} className="ajrow" onClick={() => app.openDetail('equipo', e.id)}
+              <div key={e.id} className="ajrow aj-trow" onClick={() => app.openDetail('equipo', e.id)}
                 style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, alignItems: 'center', padding: '14px 22px', borderBottom: `1px solid ${C.borderFaint}`, cursor: 'pointer' }}>
-                <div style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{e.codigo}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 11, minWidth: 0 }}>
+                <div className="aj-cell" data-label="Código" style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{e.codigo}</div>
+                <div className="aj-cell aj-cell-primary" style={{ display: 'flex', alignItems: 'center', gap: 11, minWidth: 0 }}>
                   <span style={{ width: 34, height: 34, borderRadius: 9, background: iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none', color: iconColor }}>
                     <CatIcon cat={e.cat} color={iconColor} />
                   </span>
                   <span style={{ fontSize: 14, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{e.nombre}</span>
                 </div>
-                <div style={{ fontSize: 13, color: C.dim }}>{e.cat}</div>
-                <div style={{ textAlign: 'center', fontFamily: mono, fontSize: 13 }}>{e.total}</div>
-                <div style={{ textAlign: 'center', fontFamily: mono, fontSize: 13, color: dispColor, fontWeight: 600 }}>{e.disp}/{e.total}</div>
-                <div><Badge estado={e.estado} /></div>
-                <div style={{ fontSize: 12, color: C.mute, fontFamily: mono }}>{e.upd}</div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
+                <div className="aj-cell" data-label="Categoría" style={{ fontSize: 13, color: C.dim }}>{e.cat}</div>
+                <div className="aj-cell" data-label="Stock" style={{ textAlign: 'center', fontFamily: mono, fontSize: 13 }}>{e.total}</div>
+                <div className="aj-cell" data-label="Disp." style={{ textAlign: 'center', fontFamily: mono, fontSize: 13, color: dispColor, fontWeight: 600 }}>{e.disp}/{e.total}</div>
+                <div className="aj-cell" data-label="Estado"><Badge estado={e.estado} /></div>
+                <div className="aj-cell" data-label="Actualizado" style={{ fontSize: 12, color: C.mute, fontFamily: mono }}>{e.upd}</div>
+                <div className="aj-cell-chevron" style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
               </div>
             )
           })}

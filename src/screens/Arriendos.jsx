@@ -54,25 +54,25 @@ export default function Arriendos({ app }) {
 
       <div className="aj-table-wrap" style={{ background: C.panel, border: `1px solid ${C.border}`, borderRadius: 16, overflow: 'hidden' }}>
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
+          <div className="aj-thead" style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, padding: '13px 22px', fontSize: 11.5, color: C.mute, textTransform: 'uppercase', letterSpacing: '.6px', borderBottom: `1px solid ${C.borderSoft}`, fontWeight: 500 }}>
             <div>N°</div><div>Cliente</div><div>Periodo</div><div>Equipos</div><div>Estado</div><div style={{ textAlign: 'right' }}>Total</div><div />
           </div>
           {rows.map((a) => {
             const pagado = a.pago === '$0'
             const equiposShort = a.equipos.map((e) => `${e.q}× ${e.n.split(' ').slice(0, 2).join(' ')}`).join(', ')
             return (
-              <div key={a.id} className="ajrow" onClick={() => app.openDetail('arriendo', a.id)}
+              <div key={a.id} className="ajrow aj-trow" onClick={() => app.openDetail('arriendo', a.id)}
                 style={{ display: 'grid', gridTemplateColumns: GRID, gap: 14, alignItems: 'center', padding: '14px 22px', borderBottom: `1px solid ${C.borderFaint}`, cursor: 'pointer' }}>
-                <div style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{a.id}</div>
-                <div style={{ fontSize: 14, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{a.cliente}</div>
-                <div style={{ fontSize: 12.5, color: C.dim, fontFamily: mono }}>{a.ini} → {a.fin}</div>
-                <div style={{ fontSize: 12.5, color: C.dim, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{equiposShort}</div>
-                <div><Badge estado={a.estado} /></div>
-                <div style={{ textAlign: 'right' }}>
+                <div className="aj-cell" data-label="N°" style={{ fontFamily: mono, fontSize: 12.5, color: C.dim }}>{a.id}</div>
+                <div className="aj-cell aj-cell-primary" style={{ fontSize: 14, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{a.cliente}</div>
+                <div className="aj-cell" data-label="Periodo" style={{ fontSize: 12.5, color: C.dim, fontFamily: mono }}>{a.ini} → {a.fin}</div>
+                <div className="aj-cell" data-label="Equipos" style={{ fontSize: 12.5, color: C.dim, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{equiposShort}</div>
+                <div className="aj-cell" data-label="Estado"><Badge estado={a.estado} /></div>
+                <div className="aj-cell" data-label="Total" style={{ textAlign: 'right' }}>
                   <div style={{ fontFamily: mono, fontSize: 13.5, fontWeight: 700 }}>{a.total}</div>
                   <div style={{ fontSize: 11, color: pagado ? '#36d98e' : '#f5b94e', fontFamily: mono }}>{pagado ? 'Pagado' : a.pago + ' pend.'}</div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
+                <div className="aj-cell-chevron" style={{ display: 'flex', justifyContent: 'flex-end', color: '#5c5c66' }}><IconChevronRight size={16} /></div>
               </div>
             )
           })}
